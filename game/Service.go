@@ -11,32 +11,12 @@ type Input interface {
 	GetUserInputCandidate() *list.List
 }
 
-type DTO interface{
-	MakeCandidate(string) interface{}
-}
-
-type Car struct{
-	position int
-	name string
-}
-
 type Cars struct{
 	carList *list.List
 }
 
 type Turn struct{
 	turns int
-}
-
-func (c *Car) MakeCandidate(candidate string) (*Car, error) {
-
-	if 5<len(candidate){
-		err := fmt.Errorf("Name(%s) length must be under 5!", candidate)
-		return &Car{}, err
-	}
-
-	car := &Car{0, candidate}
-	return car, nil
 }
 
 func (c *Cars) GetUserInputCandidate() *list.List{
@@ -62,3 +42,4 @@ func (gt *Turn) GetUserInputGameTurn() int{
 	_, _ = fmt.Scanln(&inputTurn)
 	return inputTurn
 }
+
