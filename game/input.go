@@ -21,10 +21,10 @@ type Car struct{
 }
 
 type Cars struct{
-	carList list.List
+	carList *list.List
 }
 
-type GameTurn struct{
+type Turn struct{
 	turns int
 }
 
@@ -57,7 +57,7 @@ func (c *Cars) GetUserInputCandidate() *list.List{
 	return carList
 }
 
-func (gt *GameTurn) GetUserInputGameTurn() int{
+func (gt *Turn) GetUserInputGameTurn() int{
 	var inputTurn int
 	_, _ = fmt.Scanln(&inputTurn)
 	return inputTurn
