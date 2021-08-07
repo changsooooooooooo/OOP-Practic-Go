@@ -7,8 +7,8 @@ import (
 )
 
 type Input interface {
-	GetUserInputGameTurn() int
-	GetUserInputCandidate() *list.List
+	GetUserInputGameTurn()
+	GetUserInputCandidate() error
 }
 
 type Cars struct{
@@ -19,27 +19,27 @@ type Turn struct{
 	turns int
 }
 
-func (c *Cars) GetUserInputCandidate() *list.List{
+func (c *Cars) GetUserInputCandidate() error{
 	var inputSeries string
 	_, _ = fmt.Scanln(&inputSeries)
 	candidates := strings.Split(inputSeries, ",")
 
-	car := &Car{}
-	carList := list.New()
+	c.carList = list.New()
 
 	for _, v := range candidates{
-		candidate, err:=car.MakeCandidate(v)
+		car := &Car{}
+		err:=car.MakeCandidate(v)
 		if err != nil{
-			return list.New()
+			return err
 		}
-		carList.PushBack(candidate)
+		c.carList.PushBack(car)
 	}
-	return carList
+	return nil
 }
 
-func (gt *Turn) GetUserInputGameTurn() int{
+func (t *Turn) GetUserInputGameTurn(){
 	var inputTurn int
 	_, _ = fmt.Scanln(&inputTurn)
-	return inputTurn
+	t.turns=inputTurn
 }
 

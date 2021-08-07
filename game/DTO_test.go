@@ -25,3 +25,7 @@ func TestMakeCandidate(t *testing.T) {
 		panic(err)
 	}
 }
+
+func TestPointerReceiver(t *testing.T) {
+
+}

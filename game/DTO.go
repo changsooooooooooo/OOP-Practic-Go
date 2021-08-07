@@ -13,15 +13,14 @@ type Car struct{
 	name string
 }
 
-
-func (c *Car) MakeCandidate(candidate string) (*Car, error) {
+func (c *Car) MakeCandidate(candidate string) error {
 
 	if 5<len(candidate){
 		err := fmt.Errorf("Name(%s) length must be under 5!", candidate)
-		return &Car{}, err
+		return err
 	}
 
-	car := &Car{0, candidate}
-	return car, nil
+	c = &Car{0, candidate}
+	return nil
 }
 
