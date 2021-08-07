@@ -24,7 +24,7 @@ func (c *Cars) GetUserInputCandidate() error{
 	_, _ = fmt.Scanln(&inputSeries)
 	candidates := strings.Split(inputSeries, ",")
 
-	c.carList = list.New()
+	//c.carList = list.New()
 
 	for _, v := range candidates{
 		car := &Car{}
