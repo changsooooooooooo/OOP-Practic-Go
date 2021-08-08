@@ -2,10 +2,10 @@ package service
 
 type GameRuleCheck interface {
 	FinishCheck() bool
-	ReturnResult() Result
+	ReturnResult() *Result
 }
 
 type Game struct {
-	Winner   Result
+	Winner   *Result
 	IsFinish bool
 }

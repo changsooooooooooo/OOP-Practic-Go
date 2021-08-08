@@ -5,7 +5,8 @@ import (
 )
 
 type DTO interface {
-	MakeCandidate(string) interface{}
+	MakeCandidate(string) error
+	WhetherMoveOrNot(int)
 }
 
 type Car struct {
@@ -22,4 +23,10 @@ func (c *Car) MakeCandidate(candidate string) error {
 
 	c = &Car{0, candidate}
 	return nil
+}
+
+func (c *Car) WhetherMoveOrNot(diceNum int) {
+	if 3 < diceNum {
+		c.Position += 1
+	}
 }
