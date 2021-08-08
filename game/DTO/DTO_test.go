@@ -1,4 +1,4 @@
-package game
+package DTO
 
 import (
 	"fmt"
@@ -13,14 +13,14 @@ func TestInputGo(t *testing.T) {
 	testSlice = append(testSlice, "123")
 	testSlice = append(testSlice, "46")
 
-	for _, v := range testSlice{
+	for _, v := range testSlice {
 		fmt.Println(v)
 	}
 }
 
 func TestMakeCandidate(t *testing.T) {
-	name:="thomasss"
-	if 5<len(name){
+	name := "thomasss"
+	if 5 < len(name) {
 		err := fmt.Errorf("Name(%s) length must be under 5!", name)
 		panic(err)
 	}

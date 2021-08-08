@@ -1,21 +1,21 @@
-package game
+package DTO
 
 import (
 	"fmt"
 )
 
-type DTO interface{
+type DTO interface {
 	MakeCandidate(string) interface{}
 }
 
-type Car struct{
-	position int
-	name string
+type Car struct {
+	Position int
+	Name     string
 }
 
 func (c *Car) MakeCandidate(candidate string) error {
 
-	if 5<len(candidate){
+	if 5 < len(candidate) {
 		err := fmt.Errorf("Name(%s) length must be under 5!", candidate)
 		return err
 	}
@@ -23,4 +23,3 @@ func (c *Car) MakeCandidate(candidate string) error {
 	c = &Car{0, candidate}
 	return nil
 }
-
