@@ -6,6 +6,7 @@ type GameRuleCheck interface {
 }
 
 type Game struct {
+	Candidates *Cars
 	Winner   *Result
 	IsFinish bool
 }
