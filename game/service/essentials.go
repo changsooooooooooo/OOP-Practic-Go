@@ -88,6 +88,7 @@ func (t *Turn) RemainGameTurn() {
 func (cl *Controller) RollController(c *Cars) {
 	length := len(c.CarList)
 	cl.ControllerList = make([]int, length)
+	//tdd 필요
 	for i := 0; i < length; i++ {
 		randNum := rand.Intn(10)
 		cl.ControllerList = append(cl.ControllerList, randNum)
