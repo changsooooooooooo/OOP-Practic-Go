@@ -7,6 +7,7 @@ import (
 )
 
 type ShowInterface interface{
+	GetInputs() error
 	ShowStatus()
 	ShowResult()
 	ChangeStatusType(rPos int) string
@@ -14,6 +15,14 @@ type ShowInterface interface{
 
 type UI struct {
 	Game *service.Game
+}
+
+func (ui *UI) GetInputs() error{
+	err:=ui.Game.ValidateInputCheck()
+	if err!=nil{
+		return err
+	}
+	return nil
 }
 
 func (ui *UI) ShowStatus() {
@@ -47,6 +56,7 @@ func (ui *UI) ChangeStatusType(rPos int) string{
 
 func (ui *UI) PresentGameStatus(){
 	for ui.Game.IsFinish!=true{
+		ui.Game.DoGame()
 		ui.ShowStatus()
 	}
 	ui.ShowResult()

@@ -1,7 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"OOP-Practice-GO/game/UI"
+	"fmt"
+)
 
 func main() {
-	fmt.Println("Hello Go OOP")
+	ui:=&UI.UI{}
+	err:=ui.GetInputs()
+	if err!=nil{
+		fmt.Println(err)
+		return
+	}
+	ui.PresentGameStatus()
 }
