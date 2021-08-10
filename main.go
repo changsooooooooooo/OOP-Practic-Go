@@ -6,11 +6,12 @@ import (
 )
 
 func main() {
-	ui:=&UI.UI{}
-	err:=ui.GetInputs()
-	if err!=nil{
+	ui := &UI.UI{}
+	err := ui.GetInputs()
+	if err != nil {
 		fmt.Println(err)
 		return
 	}
+
 	ui.PresentGameStatus()
 }

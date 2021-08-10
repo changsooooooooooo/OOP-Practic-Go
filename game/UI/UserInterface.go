@@ -6,7 +6,8 @@ import (
 	"strings"
 )
 
-type ShowInterface interface{
+type ShowInterface interface {
+	InitUI()
 	GetInputs() error
 	ShowStatus()
 	ShowResult()
@@ -17,45 +18,45 @@ type UI struct {
 	Game *service.Game
 }
 
-func (ui *UI) GetInputs() error{
-	err:=ui.Game.ValidateInputCheck()
-	if err!=nil{
+func (ui *UI) GetInputs() error {
+	err := ui.Game.ValidateInputCheck()
+	if err != nil {
 		return err
 	}
 	return nil
 }
 
 func (ui *UI) ShowStatus() {
-	status:=ui.Game.Candidates
-	for _, v:=range status.CarList{
-		tempStatus:=ui.ChangeStatusType(v.Position)
+	status := ui.Game.Candidates
+	for _, v := range status.CarList {
+		tempStatus := ui.ChangeStatusType(v.Position)
 		fmt.Printf("%s : %s", v.Name, tempStatus)
 	}
 }
 
 func (ui *UI) ShowResult() {
-	result:=ui.Game.Winner
-	length:=len(result.ResultList)
-	rs:=strings.Builder{}
+	result := ui.Game.Winner
+	length := len(result.ResultList)
+	rs := strings.Builder{}
 	for i, v := range result.ResultList {
 		rs.WriteString(v.Name)
-		if i<length-1 {
+		if i < length-1 {
 			rs.WriteString(",")
 		}
 	}
 	fmt.Printf("%s가 우승하였습니다.", rs.String())
 }
 
-func (ui *UI) ChangeStatusType(rPos int) string{
-	sb:=strings.Builder{}
-	for i:=0; i<rPos; i++{
+func (ui *UI) ChangeStatusType(rPos int) string {
+	sb := strings.Builder{}
+	for i := 0; i < rPos; i++ {
 		sb.WriteString("_")
 	}
 	return sb.String()
 }
 
-func (ui *UI) PresentGameStatus(){
-	for ui.Game.IsFinish!=true{
+func (ui *UI) PresentGameStatus() {
+	for ui.Game.IsFinish != true {
 		ui.Game.DoGame()
 		ui.ShowStatus()
 	}
