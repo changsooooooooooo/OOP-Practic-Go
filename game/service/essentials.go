@@ -12,7 +12,7 @@ type Input interface {
 	GetUserInputCandidate() error
 }
 
-type Process interface{
+type Process interface {
 	ReflectControllerNumber()
 }
 
@@ -67,12 +67,13 @@ func (c *Cars) TopRankingScore() int {
 	}
 	return topScore
 }
+
 //값을 추후에 아래에서 복사해줘야 하는 단점이 있지만, 한 번만 계산하면 된다는 장점이 있음
 //즉, 늘 꾸준히 struct 에서 topScore 를 관리할 필요는 없지
 
-func (c *Cars) ReflectControllerNumber(cl *Controller){
+func (c *Cars) ReflectControllerNumber(cl *Controller) {
 	cl.RollController(c)
-	for i, v:=range cl.ControllerList{
+	for i, v := range cl.ControllerList {
 		c.CarList[i].WhetherMoveOrNot(v)
 	}
 }
