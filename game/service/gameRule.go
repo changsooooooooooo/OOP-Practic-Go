@@ -46,6 +46,7 @@ func (g *Game) finishCheck() {
 		g.IsFinish = true
 	}
 }
+
 func (g *Game) ReturnResult() {
 	cars := g.Candidates
 	g.Winner.TopRankingCandidates(cars)

@@ -13,6 +13,7 @@ type Input interface {
 }
 
 type Process interface {
+	initCandidates(int)
 	ReflectControllerNumber()
 }
 
@@ -42,18 +43,23 @@ type Result struct {
 	ResultList []*DTO.Car
 }
 
+func (c *Cars) initCandidates(length int) {
+	c.CarList = make([]*DTO.Car, length)
+	for i := 0; i < length; i++ {
+		c.CarList[i] = &DTO.Car{}
+	}
+}
+
 func (c *Cars) GetUserInputCandidate() error {
 	var inputSeries string
 	_, _ = fmt.Scanln(&inputSeries)
 	candidates := strings.Split(inputSeries, ",")
-	c.CarList = make([]*DTO.Car, len(candidates))
+	c.initCandidates(len(candidates))
 	for i, v := range candidates {
-		car := &DTO.Car{}
-		err := car.MakeCandidate(v)
+		err := c.CarList[i].MakeCandidate(v)
 		if err != nil {
 			return err
 		}
-		c.CarList[i] = car
 	}
 	return nil
 }
