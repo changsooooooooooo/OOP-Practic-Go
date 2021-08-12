@@ -19,11 +19,11 @@ type Process interface {
 type Output interface {
 	RemainGameTurn()
 	TopRankingCandidates()
-	TopRankingScore() int
+	topRankingScore() int
 }
 
 type ControllerAction interface {
-	RollController(c *Cars)
+	rollController(c *Cars)
 }
 
 type Cars struct {
@@ -58,7 +58,7 @@ func (c *Cars) GetUserInputCandidate() error {
 	return nil
 }
 
-func (c *Cars) TopRankingScore() int {
+func (c *Cars) topRankingScore() int {
 	topScore := 0
 	for _, v := range c.CarList {
 		if topScore < v.Position {
@@ -72,14 +72,14 @@ func (c *Cars) TopRankingScore() int {
 //즉, 늘 꾸준히 struct 에서 topScore 를 관리할 필요는 없지
 
 func (c *Cars) ReflectControllerNumber(cl *Controller) {
-	cl.RollController(c)
+	cl.rollController(c)
 	for i, v := range cl.ControllerList {
 		c.CarList[i].WhetherMoveOrNot(v)
 	}
 }
 
 func (r *Result) TopRankingCandidates(c *Cars) {
-	topScore := c.TopRankingScore()
+	topScore := c.topRankingScore()
 	r.ResultList = make([]*DTO.Car, 0)
 	for _, v := range c.CarList {
 		if v.Position == topScore {
@@ -98,7 +98,7 @@ func (t *Turn) RemainGameTurn() {
 	t.Turns -= 1
 }
 
-func (cl *Controller) RollController(c *Cars) {
+func (cl *Controller) rollController(c *Cars) {
 	length := len(c.CarList)
 	cl.ControllerList = make([]int, length)
 	//tdd 필요

@@ -12,6 +12,5 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-
 	ui.PresentGameStatus()
 }

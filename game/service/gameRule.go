@@ -38,12 +38,14 @@ func (g *Game) DoGame() {
 	cl := g.Controller
 	g.GameTurn.RemainGameTurn()
 	g.Candidates.ReflectControllerNumber(cl)
+	g.finishCheck()
+}
 
+func (g *Game) finishCheck() {
 	if g.GameTurn.Turns == -1 {
 		g.IsFinish = true
 	}
 }
-
 func (g *Game) ReturnResult() {
 	cars := g.Candidates
 	g.Winner.TopRankingCandidates(cars)
