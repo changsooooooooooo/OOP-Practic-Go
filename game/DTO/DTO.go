@@ -19,7 +19,8 @@ func (c *Car) MakeCandidate(candidate string) error {
 		err := fmt.Errorf("Name(%s) length must be under 5!", candidate)
 		return err
 	}
-	c = &Car{0, candidate}
+	c.Position = 0
+	c.Name = candidate
 	return nil
 }
 

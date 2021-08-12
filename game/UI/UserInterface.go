@@ -7,7 +7,7 @@ import (
 )
 
 type ShowInterface interface {
-	InitUI()
+	MakeUI()
 	GetInputs() error
 	ShowStatus()
 	ShowResult()
@@ -18,7 +18,12 @@ type UI struct {
 	Game *service.Game
 }
 
+func (ui *UI) MakeUI() {
+	ui.Game = &service.Game{}
+}
+
 func (ui *UI) GetInputs() error {
+	ui.Game.InitGame()
 	err := ui.Game.ValidateInputCheck()
 	if err != nil {
 		return err

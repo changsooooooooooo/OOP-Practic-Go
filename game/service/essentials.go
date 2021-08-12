@@ -80,6 +80,7 @@ func (c *Cars) ReflectControllerNumber(cl *Controller) {
 
 func (r *Result) TopRankingCandidates(c *Cars) {
 	topScore := c.TopRankingScore()
+	r.ResultList = make([]*DTO.Car, 0)
 	for _, v := range c.CarList {
 		if v.Position == topScore {
 			r.ResultList = append(r.ResultList, v)
