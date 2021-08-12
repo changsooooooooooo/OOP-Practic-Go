@@ -47,13 +47,13 @@ func (c *Cars) GetUserInputCandidate() error {
 	_, _ = fmt.Scanln(&inputSeries)
 	candidates := strings.Split(inputSeries, ",")
 	c.CarList = make([]*DTO.Car, len(candidates))
-	for _, v := range candidates {
+	for i, v := range candidates {
 		car := &DTO.Car{}
 		err := car.MakeCandidate(v)
 		if err != nil {
 			return err
 		}
-		c.CarList = append(c.CarList, car)
+		c.CarList[i] = car
 	}
 	return nil
 }
@@ -104,6 +104,6 @@ func (cl *Controller) RollController(c *Cars) {
 	//tdd 필요
 	for i := 0; i < length; i++ {
 		randNum := rand.Intn(10)
-		cl.ControllerList = append(cl.ControllerList, randNum)
+		cl.ControllerList[i] = randNum
 	}
 }

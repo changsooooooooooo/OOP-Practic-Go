@@ -35,11 +35,13 @@ func (ui *UI) ShowStatus() {
 	status := ui.Game.Candidates
 	for _, v := range status.CarList {
 		tempStatus := ui.ChangeStatusType(v.Position)
-		fmt.Printf("%s : %s", v.Name, tempStatus)
+		fmt.Printf("%s : %s\n", v.Name, tempStatus)
 	}
+	fmt.Println()
 }
 
 func (ui *UI) ShowResult() {
+	ui.Game.ReturnResult()
 	result := ui.Game.Winner
 	length := len(result.ResultList)
 	rs := strings.Builder{}
@@ -49,7 +51,7 @@ func (ui *UI) ShowResult() {
 			rs.WriteString(",")
 		}
 	}
-	fmt.Printf("%s가 우승하였습니다.", rs.String())
+	fmt.Printf("%s가 우승하였습니다.\n", rs.String())
 }
 
 func (ui *UI) ChangeStatusType(rPos int) string {

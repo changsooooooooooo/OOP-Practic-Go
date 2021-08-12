@@ -36,10 +36,12 @@ func (g *Game) ValidateInputCheck() error {
 
 func (g *Game) DoGame() {
 	cl := g.Controller
-	for -1 < g.GameTurn.Turns {
-		g.Candidates.ReflectControllerNumber(cl)
+	g.GameTurn.RemainGameTurn()
+	g.Candidates.ReflectControllerNumber(cl)
+
+	if g.GameTurn.Turns == -1 {
+		g.IsFinish = true
 	}
-	g.IsFinish = true
 }
 
 func (g *Game) ReturnResult() {
