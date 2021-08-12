@@ -1,7 +1,5 @@
 package service
 
-import "fmt"
-
 type GameProcess interface {
 	InitGame()
 	DoGame()
@@ -17,16 +15,17 @@ type Game struct {
 	IsFinish   bool
 }
 
-func (g *Game) InitGame() {
+func InitGame() *Game {
+	g := &Game{}
 	g.Candidates = &Cars{}
 	g.GameTurn = &Turn{}
 	g.Controller = &Controller{}
 	g.Winner = &Result{}
 	g.IsFinish = false
+	return g
 }
 
 func (g *Game) ValidateInputCheck() error {
-	fmt.Println(1)
 	err := g.Candidates.GetUserInputCandidate()
 	if err != nil {
 		return err

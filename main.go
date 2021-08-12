@@ -6,8 +6,7 @@ import (
 )
 
 func main() {
-	ui := &UI.UI{}
-	ui.MakeUI()
+	ui := UI.InitUI()
 	err := ui.GetInputs()
 	if err != nil {
 		fmt.Println(err)
