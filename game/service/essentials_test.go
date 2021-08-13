@@ -26,7 +26,6 @@ func TestListValueCheck(t *testing.T) {
 func rollController(cl *Controller) {
 	length := 3
 	cl.ControllerList = make([]int, length)
-	//tdd 필요
 	for i := 0; i < length; i++ {
 		randNum := rand.Intn(10)
 		fmt.Print(randNum)
